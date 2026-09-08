@@ -3,6 +3,9 @@ import os
 
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
+def clear_terminal():
+    input("\nNaciśnij ENTER, aby kontynuować...")
+    print("\n"*100)
 
 def generate_key():
     """Generuje nowy klucz AES-256."""
@@ -157,9 +160,7 @@ def main():
 
         key = generate_key()
 
-        input(
-            "\nNaciśnij ENTER po zapisaniu klucza na kartce..."
-        )
+        clear_terminal()
 
     # -----------------------------------------
     # UŻYCIE ISTNIEJĄCEGO KLUCZA
@@ -170,11 +171,13 @@ def main():
         key = read_key()
 
         if key is None:
+            clear_terminal()
             return
 
     else:
 
         print("\nNieprawidłowy wybór.")
+        clear_terminal()
         return
 
     # -----------------------------------------
@@ -197,22 +200,32 @@ def main():
         # SZYFROWANIE
         if choice == "1":
 
+            clear_terminal()
+
             encrypt_password(key)
+
+            clear_terminal()
 
         # ODSZYFROWYWANIE
         elif choice == "2":
 
+            clear_terminal()
+
             decrypt_password(key)
+
+            clear_terminal()
 
         # WYJŚCIE
         elif choice == "3":
 
             print("\nKoniec programu.")
+            clear_terminal()
             break
 
         else:
 
             print("\nNieprawidłowa opcja.")
+            clear_terminal()
 
 
 # Uruchomienie programu
