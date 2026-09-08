@@ -1,6 +1,4 @@
-# passwd_manager
-
-# Password Crypto
+# Password Encrypter
 
 A lightweight command-line application for encrypting and decrypting passwords using **AES-256-GCM**.
 
@@ -57,3 +55,74 @@ CIPHERTEXT
 The nonce does not need to be kept secret. It is required together with the ciphertext during decryption.
 
 The AES key must remain secret.
+
+---
+
+## Security Model
+The application uses three pieces of information during decryption:
+```text
+AES-256 Key
+     +
+Nonce
+     +
+Ciphertext
+     │
+     ▼
+Original Password
+```
+The security of the system depends primarily on keeping the AES-256 key secret.
+
+If an attacker obtains the key and the corresponding nonce/ciphertext pairs, they can decrypt the stored passwords.
+
+---
+
+## Installation
+
+1. Clone the repository
+```text
+git clone <repository-url>
+cd passwd_manager
+```
+2. Create a virtual environment
+```text
+python -m venv .venv
+```
+3. Activate the virtual environment
+```text
+.\.venv\Scripts\Activate.ps1
+```
+4. Install dependencies
+```text
+python -m pip install -r requirements.txt
+```
+
+---
+
+## Cryptographic Design
+
+1. Encryption Algorith
+```text
+AES-256-GCM
+```
+2. Key Size
+```text
+256 bits (32 bytes)
+```
+3. Encoding
+```text
+Base64
+```
+
+---
+
+## Project Structure
+```text
+passwd_manager/
+│
+├── password_encryption/
+│   └── password_crypto.py
+│
+├── .gitignore
+├── requirements.txt
+└── README.md
+```
